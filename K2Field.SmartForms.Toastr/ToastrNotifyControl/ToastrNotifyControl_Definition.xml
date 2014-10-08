@@ -1,0 +1,259 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<!---
+This XML file describes the control to SmartForms. At the very least, you need to have the following
+ values in this file:
+    <ControlType>
+      <FullName></FullName>
+      <Category></Category>
+      <Group></Group>
+      <Name></Name>
+    </ControlType>
+See the file below for samples and descriptions of the values you may have in this file
+ -->
+<ControlType>
+  <!---<Category> is the category or "classification" of the control. It determines how rules wizard and other designers treat the control.
+	The control properties and styling of any category control can be manipulated if it is implemented by the control type.
+  The following Categories are available: 
+	  Display: A control that has a static value/representation at runtime. (Display only, value cannot be changed with rules)
+	  Input: A control that has a dynamic value at runtime. (can be read/write and value can be set with rules)
+	  Listing: A control that has a value derived from an associated data source. Listing controls support being populated with one or more SmartObject records
+	  Action: A control usually without value that is used to perform an action by the user (example: Submit, Save, Navigate etc using Buttons, Links etc)
+		-->
+  <Category>Input</Category>
+
+  <!--<Group> is the name of the toolbox group where the control can be found at design time
+	-->
+  <Group>Notifications</Group>
+
+  <!--<Name> is the short name for the control type that is implemented, platform independent.
+	It is the name of the control type stored in Form and View definitions.
+	Various implementations may be used later for other platforms or override default implementations.
+	-->
+  <Name>ToastrNotifyControl</Name>
+
+  <!--<DisplayName> is shown in the toolbox's "Controls" tab, and is the name used when creating control instance names.
+	Example: ToastrNotifyControl_Definition, ToastrNotifyControl_Definition1, ToastrNotifyControl_Definition2 etc   
+	-->
+  <DisplayName>Toast Notification</DisplayName>
+
+  <!--<FullName> is used to load and instantiate the control. It tells smartforms where to find the control
+	Format: {TypeFullName},{AssemblyName(without .dll extension)}
+	-->
+  <FullName>K2Field.SmartForms.Toastr.ToastrNotifyControl.Control, K2Field.SmartForms.Toastr</FullName>
+
+  <!--<GetPropertyMethod> and <SetPropertyMethod> are the .js methods called to Get or Set  properties for the control at runtime
+	Format: {TypeFullName}.methodName}
+	-->
+  <GetPropertyMethod>K2Field.SmartForms.Toastr.ToastrNotifyControl.getProperty</GetPropertyMethod>
+  <SetPropertyMethod>K2Field.SmartForms.Toastr.ToastrNotifyControl.setProperty</SetPropertyMethod>
+  <!--<GetValueMethod> and <SetValueMethod> are the .js methods called when something gets or sets the control's value at runtime-->
+  <GetValueMethod>K2Field.SmartForms.Toastr.ToastrNotifyControl.getValue</GetValueMethod>
+  <SetValueMethod>K2Field.SmartForms.Toastr.ToastrNotifyControl.setValue</SetValueMethod>
+  <!--<GetDefaultValueMethod> is the .js method used to get the default value for the control-->
+  <GetDefaultValueMethod>K2Field.SmartForms.Toastr.ToastrNotifyControl.getDefaultValue</GetDefaultValueMethod>
+  <!--<DataTypes> list the data types that the control supports
+      Available Data types are:
+      AutoGuid, AutoNumber, DateTime, Decimal, File, Guid, HyperLink, Image, Memo, MultiValue, Number, Text, Xml, YesNo
+  -->
+  <DataTypes>
+    <DataType>Memo</DataType>
+  </DataTypes>
+
+  <!--<Events> lists all the events that the control exposes. These events are listed in the Rules editor.
+      Event handlers for non-standard JQuery events must be implemented in the control's .js file
+  -->
+  <Events>
+    <Event>ToastDisplayed</Event>
+  </Events>
+  
+  <!--<DefaultEventName> is the default event that the Rules composer will select when the designer creates a rule for the control-->
+  <DefaultEventName>ToastDisplayed</DefaultEventName>
+
+  <!--<ExecuteMethod> is the name of a .js method called when a Rule Action calls a Method on the Control-->
+  <ExecuteMethod>K2Field.SmartForms.Toastr.ToastrNotifyControl.execute</ExecuteMethod>
+  <!--<Methods> lists the available methods that the control exposes to Rule Actions-->
+  <Methods>
+    <!--<Method ResultType="Text">
+      <Name>clearevent</Name>
+      <DisplayName>Clear Event</DisplayName>
+      <Description>Clears Value and Event properties</Description>
+      <Parameters>
+      </Parameters>
+    </Method>-->
+    <Method ResultType="Text">
+      <Name>showtoastnotification</Name>
+      <DisplayName>Show Toast Notification</DisplayName>
+      <Description>Show a Toast Notification</Description>
+      <Parameters>
+        <Parameter DataType="Text">
+          <Name>messagetype</Name>
+          <DisplayName>Message Type</DisplayName>
+          <Description>Message Type</Description>
+          <IsRequired>false</IsRequired>
+        </Parameter>
+        <Parameter DataType="Text">
+          <Name>title</Name>
+          <DisplayName>Title</DisplayName>
+          <Description>Title</Description>
+          <IsRequired>True</IsRequired>
+        </Parameter>
+        <Parameter DataType="Text">
+          <Name>message</Name>
+          <DisplayName>Message</DisplayName>
+          <Description>Message</Description>
+          <IsRequired>true</IsRequired>
+        </Parameter>
+        <Parameter DataType="Boolean">
+          <Name>closebutton</Name>
+          <DisplayName>Close Button</DisplayName>
+          <Description>Close Button</Description>
+          <IsRequired>false</IsRequired>
+        </Parameter>
+        <Parameter DataType="Text">
+          <Name>position</Name>
+          <DisplayName>Position</DisplayName>
+          <Description>position</Description>
+          <IsRequired>false</IsRequired>
+        </Parameter>
+      </Parameters>
+    </Method>
+  </Methods>
+
+
+        <!--<Properties> defines the various properties that the control may have. These are usually shown in the 
+  Properties tab when you design the form and select the control
+	-->
+	<!--<Prop> is a property in the Properties collection. It supports the following attributes:
+    ID: the unique name for the property
+    setFunction: which function in the .js file should be called to set the value of the property at design time
+    friendlyName: the display name of the property in the design tool
+    type: whether the property is a simple or complex type. Supported values are "simple", "drop" and "complex"
+    category: specifies the property "group" that the property will be grouped under at design time
+    refreshdisplay: whether the control should be refreshed when the property is changed at design time. Supported values are "true" or "false"
+    DesignerSet: the .js method called to set the control value at design time
+	DesignerValidate: the method used to validate the user's design-time input for the control. Mostly used to ensure unique Id for the control name
+	inputlength: the maximum length of design-time input for the control
+    
+	Below is an example of a Prop item
+    <Prop ID="Property1"
+          setFunction="K2Field.SmartForms.Toastr.ToastrNotifyControl.setProperty1" friendlyname="Sample Property 1" type="simple" category="General"
+          refreshdisplay="true"
+          DesignerSet="K2Field.SmartForms.Toastr.ToastrNotifyControl._showEditStyles" />
+	  -->
+  <Properties>
+    <!--ControlName is the Controls name (identifier) -->
+    <Prop ID="ControlName" ValidationPattern="\S" ValidationMessage="InvalidName" refreshdisplay="true" DesignerValidate="SourceCode.Forms.Designers.validateControlName" friendlyname="Name" type="string" category="Detail" inputlength="255" />
+	<!--"DataType" is a property that tells smartforms runtime what the controls data type is-->
+    <Prop ID="DataType" setFunction="SetDataType" friendlyname="Data Type" type="drop" category="Detail" refreshdisplay="true" getDropItemsFunction="getDataTypesForControl" SelectionValue="" SelectionText="" inputlength="255">
+      <InitialValue>Text</InitialValue>
+    </Prop>
+    <!--ControlText is a custom property for the control. You can reference control properties in the code behind, see .cs file for example -->
+    <!--<Prop ID="ControlText"  friendlyname="Control Text" type="string" category="Detail" refreshdisplay="true">
+    </Prop>-->
+    <!--Value is the "default" value for the control, retrieved with control.Value in the .js code-->
+    <Prop ID="Value" friendlyname="Value" type="string" category="Detail" refreshdisplay="true"/>
+    <!--IsVisible is used to show or hide the control -->
+    <Prop ID="IsVisible" friendlyname="Visible" type="bool" category="General" refreshdisplay="true">
+      <Value>true</Value>
+    </Prop>
+    <!--IsEnabled is used to enable/disable the control-->
+    <Prop ID="IsEnabled" friendlyname="Enabled" type="bool" category="General" refreshdisplay="true">
+      <Value>true</Value>
+    </Prop>
+    <!--OutputDebugInfo is a custom property used to show the controls properties at runtime for debugging purposes. -->
+    <!--<Prop ID="OutputDebugInfo" friendlyname="Output Debug Info" type="bool" category="General">
+      <Value>true</Value>
+    </Prop>-->
+
+
+    <!--<Prop ID="Type" friendlyname="Type" type="string" category="Configuration" refreshdisplay="false" inputlength="100" >
+      <Value></Value>
+    </Prop>
+    <Prop ID="Title" friendlyname="Title" type="string" category="Configuration" refreshdisplay="false" inputlength="2000" >
+      <Value></Value>
+    </Prop>
+    
+    <Prop ID="Message" friendlyname="Message" type="string" category="Configuration" refreshdisplay="false" inputlength="4000">
+      <Value></Value>
+    </Prop> -->    
+    <Prop ID="CloseButton" friendlyname="Close Button" type="bool" category="Configuration" refreshdisplay="false" inputlength="255">
+      <Value>true</Value>
+    </Prop>
+    <Prop ID="MessageType" friendlyname="Type" type="drop" category="Configuration" refreshdisplay="false" inputlength="100" 
+          SelectionValue="info|error|warning|success" SelectionText="Information|Error|Warning|Success" >
+    </Prop> 
+    <Prop ID="Position" friendlyname="Position" type="drop" category="Configuration" refreshdisplay="false" inputlength="255"
+          SelectionValue="toast-top-right|toast-bottom-right|toast-bottom-left|toast-top-right|toat-top-full-width|toast-bottom-full-width" SelectionText="Top Right|Bottom Right|Bottom Left|Top Right|Top Full Width|Bottom Full Width">
+    </Prop>
+    <!--"ControlExpression" is used when you want to allow the designer to set the control value with an expression-->
+    <Prop ID="ControlExpression" friendlyname="Expression" type="complex" category="General" DesignerSet="SourceCode.Forms.Designers.View.Conditions._showControlCalculation" />
+    <!--The "Styles" property is only applicable for controls where the control Style can be changed
+    -->
+    <Prop ID="Styles"
+         setFunction="K2Field.SmartForms.Toastr.ToastrNotifyControl.setStyles" friendlyname="Styles" type="complex" category="General"
+         refreshdisplay="true"
+         DesignerSet="SourceCode.Forms.Designers.View.Styles._showEditStyles" />
+  </Properties>
+ 
+  <!--<Styles> describes which styles can be applied to the control. 
+      In this sample we allow all styles, but you can remove the styles you do not want to expose
+	-->
+  <Styles>
+    <Style IsDefault="True">
+      <Border>
+        <Right>
+          <Style />
+          <Width />
+          <Color />
+        </Right>
+        <Left>
+          <Style />
+          <Width />
+          <Color />
+        </Left>
+        <Default>
+          <Style />
+          <Width />
+          <Color />
+        </Default>
+        <Top>
+          <Style />
+          <Width />
+          <Color />
+        </Top>
+        <Bottom>
+          <Style />
+          <Width />
+          <Color />
+        </Bottom>
+      </Border>
+      <Padding>
+        <Default />
+        <Top />
+        <Left />
+        <Bottom />
+        <Right />
+      </Padding>
+      <Margin>
+        <Default />
+        <Top />
+        <Left />
+        <Bottom />
+        <Right />
+      </Margin>
+      <Font>
+        <Family />
+        <Size />
+        <Color />
+        <Style />
+        <Weight />
+      </Font>
+      <BackgroundColor />
+      <Text>
+        <Decoration />
+        <Align />
+      </Text>
+      <Format />
+    </Style>
+  </Styles>
+</ControlType>
