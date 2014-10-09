@@ -509,11 +509,11 @@ var $toastlast;
                     var title = "";
                     var message = "";
                     var closebutton = "true";
-                    var position = "toast-top-full-width";
+                    var position = "toast-top-right";
 
                     if (parameters.hasOwnProperty("messagetype")) {
                         messagetype = parameters["messagetype"];
-                    } else {
+                    } else if ($(instance).attr("data-messagetype") != undefined) {
                         messagetype = $(instance).attr("data-messagetype");
                     }
 
@@ -527,13 +527,13 @@ var $toastlast;
 
                     if (parameters.hasOwnProperty("closebutton")) {
                         closebutton = parameters["closebutton"];
-                    } else {
+                    } else if ($(instance).attr("data-closebutton") != undefined) {
                         closebutton = $(instance).attr("data-closebutton");
                     }
 
                     if (parameters.hasOwnProperty("position")) {
                         position = parameters["position"];
-                    } else {
+                    } else if ($(instance).attr("data-position") != undefined) {
                         position = $(instance).attr("data-position");
                     }
 

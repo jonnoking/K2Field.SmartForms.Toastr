@@ -216,6 +216,9 @@ namespace K2Field.SmartForms.Toastr.ToastrNotifyControl
                     this.Attributes.Add("enabled", this.IsEnabled.ToString());
                     this.Attributes.Add("visible", this.IsVisible.ToString());
                     this.Attributes.Add("style", "display:none;");
+                    this.Attributes.Add("data-messagetype", this.MessageType);
+                    this.Attributes.Add("data-position", this.Position);
+                    this.Attributes.Add("data-closebutton", this.CloseButton.ToString().ToLower());
                     break;
             }
             this.Controls.Add(AddLabelControlWithControlProperties());
