@@ -183,7 +183,7 @@ See the file below for samples and descriptions of the values you may have in th
           SelectionValue="info|error|warning|success" SelectionText="Information|Error|Warning|Success" >
     </Prop> 
     <Prop ID="Position" friendlyname="Position" type="drop" category="Configuration" refreshdisplay="false" inputlength="255"
-          SelectionValue="toast-top-right|toast-bottom-right|toast-bottom-left|toast-top-right|toat-top-full-width|toast-bottom-full-width" SelectionText="Top Right|Bottom Right|Bottom Left|Top Right|Top Full Width|Bottom Full Width">
+          SelectionValue="toast-top-right|toast-bottom-right|toast-bottom-left|toast-top-right|toast-top-full-width|toast-bottom-full-width" SelectionText="Top Right|Bottom Right|Bottom Left|Top Right|Top Full Width|Bottom Full Width">
     </Prop>
     <!--"ControlExpression" is used when you want to allow the designer to set the control value with an expression-->
     <Prop ID="ControlExpression" friendlyname="Expression" type="complex" category="General" DesignerSet="SourceCode.Forms.Designers.View.Conditions._showControlCalculation" />
